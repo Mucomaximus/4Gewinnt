@@ -43,13 +43,13 @@ class TuiSpec extends AnyWordSpec with Matchers {
     "his function check4number is to test" should {
       val tui = new Tui
       "return true" in {
-        tui.check4number(Vector(Cell(1),Cell(1),Cell(1),Cell(1))) must be(true)
+        tui.viererCheck(Vector(Cell(1),Cell(1),Cell(1),Cell(1))) must be(true)
       }
       "return false" in {
-        tui.check4number(Vector(Cell(0),Cell(1),Cell(0),Cell(1),Cell(0))) must be(false)
-        tui.check4number(Vector(Cell(1),Cell(1),Cell(0),Cell(1),Cell(1))) must be(false)
-        tui.check4number(Vector(Cell(2),Cell(1),Cell(0),Cell(1),Cell(2))) must be(false)
-        tui.check4number(Vector(Cell(1),Cell(1),Cell(2),Cell(1),Cell(1))) must be(false)
+        tui.viererCheck(Vector(Cell(0),Cell(1),Cell(0),Cell(1),Cell(0))) must be(false)
+        tui.viererCheck(Vector(Cell(1),Cell(1),Cell(0),Cell(1),Cell(1))) must be(false)
+        tui.viererCheck(Vector(Cell(2),Cell(1),Cell(0),Cell(1),Cell(2))) must be(false)
+        tui.viererCheck(Vector(Cell(1),Cell(1),Cell(2),Cell(1),Cell(1))) must be(false)
       }
     }
   }

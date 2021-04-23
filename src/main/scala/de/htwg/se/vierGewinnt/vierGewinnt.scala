@@ -33,7 +33,7 @@ object vierGewinnt {
       grid = result._1
       val flag = result._2
       if (flag != (-1, -1) && !input.contains("n")) {
-        if (tui.checkWinner(grid, flag._1, flag._2)) {
+        if (tui.check4Vier(grid, flag._1, flag._2)) {
           println("player"+tui.currentPlayer() + " win!")
           break
         } else if (!input.contains("n")) {tui.changeTurn()}
