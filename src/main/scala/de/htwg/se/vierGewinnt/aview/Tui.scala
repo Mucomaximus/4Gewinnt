@@ -2,14 +2,15 @@ package de.htwg.se.vierGewinnt.aview
 
 import de.htwg.se.vierGewinnt.model._
 
-class Tui {var playerList = Array(true, false)
+class Tui {
+  var playerList = Array(true, false)
 
   def processInputLine(input: String, grid: Grid): (Grid, (Int, Int)) = {
     input match {
       case "q" => (grid, (0, 0))
       case "n small" =>
         playerList = Array(true, false)
-        (new Grid(6, 7), (0, 0))
+        (new Grid(6, 7), (0,0))
       case "n middle" =>
         playerList = Array(true, false)
         (new Grid(10,11),(0,0))
@@ -45,7 +46,7 @@ class Tui {var playerList = Array(true, false)
 
   def checkBottom(grid: Grid, column: Int, value: Int): (Grid, Int) = {
     for (i <- grid.cells.row - 1 to 0 by -1) {
-      if (grid.col(column).cell(i).equals(Cell(0))) {
+      if (grid.col(column).getCell(i).equals(Cell(0))) {
         return (grid.set(i, column, value), i)
       }
     }
@@ -57,9 +58,9 @@ class Tui {var playerList = Array(true, false)
       true
     } else if (check4number(grid.row(row).getCells)) {
       true
-    } else if (check4number(grid.link_diagonal(row, col).getCells)) {
+    } else if (check4number(grid.left_dia(row, col).getCells)) {
       true
-    } else if (check4number(grid.right_diagonal(row, col).getCells)) {
+    } else if (check4number(grid.right_dia(row, col).getCells)) {
       true
     } else {
       false
