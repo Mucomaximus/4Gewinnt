@@ -8,15 +8,12 @@ class Tui {
   def processInputLine(input: String, grid: Grid): (Grid, (Int, Int)) = {
     input match {
       case "q" => (grid, (0, 0))
-      case "n small" =>
+      case "n klein" =>
         playerList = Array(true, false)
         (new Grid(6, 7), (0,0))
-      case "n middle" =>
+      case "n mitte" =>
         playerList = Array(true, false)
         (new Grid(10,11),(0,0))
-      case "n huge" =>
-        playerList = Array(true,false)
-        (new Grid(16, 17), (0,0))
       case _ =>
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
@@ -27,17 +24,17 @@ class Tui {
               value = 2
             }
             if (column.asDigit > grid.cells.col - 1) {
-              println("wrong input, repeat your turn!")
+              println("Falsche Eingabe, wdh!")
               return (grid, (-1, -1))
             }
             val checkGrid = checkBottom(grid, column.asDigit, value)
             if (checkGrid._2 == -1) {
-              println("cant insert at this column, repeat your turn!")
+              println("Spalte voll, wdh!")
               return (grid, (-1, -1))
             }
             (checkGrid._1, (checkGrid._2, column.asDigit))
           case _ =>
-            println("wrong input, repeat your turn!")
+            println("Falsche Eingabe, wdh!")
             (grid, (-1, -1))
         }
     }
@@ -53,21 +50,21 @@ class Tui {
     (grid, -1)
   }
 
-  def checkWinner(grid: Grid, row: Int, col: Int): Boolean = {
-    if (check4number(grid.col(col).getCells)) {
+  def check4Vier(grid: Grid, row: Int, col: Int): Boolean = {
+    if (viererCheck(grid.col(col).getCells)) {
       true
-    } else if (check4number(grid.row(row).getCells)) {
+    } else if (viererCheck(grid.row(row).getCells)) {
       true
-    } else if (check4number(grid.left_dia(row, col).getCells)) {
+    } else if (viererCheck(grid.left_dia(row, col).getCells)) {
       true
-    } else if (check4number(grid.right_dia(row, col).getCells)) {
+    } else if (viererCheck(grid.right_dia(row, col).getCells)) {
       true
     } else {
       false
     }
   }
 
-  def check4number(vector: Vector[Cell]): Boolean = {
+  def viererCheck(vector: Vector[Cell]): Boolean = {
     var counter = 0
     for (cell <- vector) {
       if (cell.equals(Cell(currentPlayer()))) {
