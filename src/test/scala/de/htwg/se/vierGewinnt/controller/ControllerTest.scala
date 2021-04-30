@@ -1,14 +1,15 @@
-package de.htwg.se.vierGewinnt.cpntroller
+package de.htwg.se.vierGewinnt.controller
 
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.vierGewinnt._
+import de.htwg.se.vierGewinnt.util._
+import de.htwg.se.vierGewinnt.model.Grid
 
 class ControllerTest extends AnyWordSpec with Matchers{
 
   "a controller" when {
     "observed by an Observer" should {
-      val aGrid = new Grid(2, 3)
+      val aGrid = new Grid(2,3)
       val controller = new Controller(aGrid)
       val observer = new Observer() {
         var updated: Boolean = false
@@ -20,35 +21,35 @@ class ControllerTest extends AnyWordSpec with Matchers{
       controller.add(observer)
       "notify its Observer after creation" in {
         controller.createEmptyGrid(4, 5)
-        observer.updated should be(true)
-        controller.grid.size should be(20)
+        observer.updated must  be(true)
+        controller.grid.size must be(20)
       }
       "notify its Observer after setting a cell" in {
         controller.setValueToBottom(0)
-        observer.updated should be(true)
-        controller.grid.cell(3, 0).value should be(1)
+        observer.updated must be(true)
+        controller.grid.cell(3, 0).value must be(1)
         controller.setValueToBottom(1)
-        observer.updated should be(true)
-        controller.grid.cell(3, 1).value should be(1)
+        observer.updated must be(true)
+        controller.grid.cell(3, 1).value must be(1)
         controller.setValueToBottom(2)
-        observer.updated should be(true)
-        controller.grid.cell(3, 2).value should be(1)
+        observer.updated must be(true)
+        controller.grid.cell(3, 2).value must be(1)
         controller.setValueToBottom(3)
-        observer.updated should be(true)
-        controller.grid.cell(3, 3).value should be(1)
-        controller.setValueToBottom(10) should be(-1)
+        observer.updated must be(true)
+        controller.grid.cell(3, 3).value must be(1)
+        controller.setValueToBottom(10) must be(-1)
         controller.changeTurn()
         controller.setValueToBottom(4)
-        controller.grid.cell(3, 4).value should be(2)
+        controller.grid.cell(3, 4).value must be(2)
         controller.changeTurn()
         controller.setValueToBottom(0)
         controller.setValueToBottom(0)
         controller.setValueToBottom(0)
-        controller.setValueToBottom(0) should be(-1)
+        controller.setValueToBottom(0) must be(-1)
       }
       "test the checkWinner function" in {
-        controller.checkWinner(0,1) should be(false)
-        controller.checkWinner(3,3) should be(true)
+        controller.checkWinner(0,1) must be(false)
+        controller.checkWinner(3,3) must be(true)
         controller.setValueToBottom(1)
         controller.setValueToBottom(1)
         controller.setValueToBottom(2)
@@ -58,19 +59,19 @@ class ControllerTest extends AnyWordSpec with Matchers{
         controller.changeTurn()
         controller.setValueToBottom(3)
         controller.setValueToBottom(3)
-        controller.checkWinner(2,1) should be(true)
-        controller.checkWinner(2,2) should be(true)
-        controller.checkWinner(0,0) should be(true)
+        controller.checkWinner(2,1) must be(true)
+        controller.checkWinner(2,2) must be(true)
+        controller.checkWinner(0,0) must be(true)
       }
       "test the getTrun function" in {
-        controller.getTurn(0) should be(true)
+        controller.getTurn(0) must be(true)
       }
       "test the changeTurn function" in {
         controller.changeTurn()
-        controller.getTurn(0) should be(false)
+        controller.getTurn(0) must be(false)
       }
       "test the currentPlayer function" in {
-        controller.currentPlayer() should be(2)
+        controller.currentPlayer() must be(2)
       }
     }
   }

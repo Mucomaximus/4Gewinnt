@@ -11,7 +11,7 @@ class GridTest extends AnyWordSpec with Matchers {
     val aGrid = new Grid(4, 5)
     "toString function tested" in {
       val a_string = "0 0 0 " + System.lineSeparator() + "0 0 0 " + System.lineSeparator()
-      grid.toString should be(a_string)
+      grid.toString must be(a_string)
     }
     "give access to its Cells" in {
       aGrid.cell(0, 0) must be(Cell(0))
