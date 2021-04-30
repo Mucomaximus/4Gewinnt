@@ -26,7 +26,7 @@ class GridSpec extends AnyWordSpec with Matchers {
     }
     "have the right values in the right places" in {
       smallGrid.cell(0, 0) must be(Cell(1))
-      smallGrid.cell(0, 1) must  be(Cell(2))
+      smallGrid.cell(0, 1) must be(Cell(2))
       smallGrid.cell(1, 0) must be(Cell(4))
       smallGrid.cell(1, 1) must be(Cell(5))
     }
