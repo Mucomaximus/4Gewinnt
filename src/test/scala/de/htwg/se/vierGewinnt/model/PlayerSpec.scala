@@ -9,7 +9,7 @@ class PlayerSpec extends AnyWordSpec with Matchers {
     "new" must {
       val player = Player("Your Name")
       "have a name" in {
-        player.name must  be("Your Name")
+        player.name must be("Your Name")
       }
       "have a nice String representation" in {
         player.toString must be("Your Name")

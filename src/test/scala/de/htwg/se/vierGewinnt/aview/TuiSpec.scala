@@ -10,10 +10,10 @@ class TuiSpec extends AnyWordSpec with Matchers {
     "his function processInputLine is to test" should {
       val tui = new Tui
       "input n will create a new grid" in {
-        val new_grid_small = tui.processInputLine("n small", new Grid(2,3))._1
-        new_grid_small must be(new Grid(6,7))
-        val new_grid_middle = tui.processInputLine("n middle", new Grid(2,3))._1
-        new_grid_middle must be(new Grid(10,11))
+        val new_grid_small = tui.processInputLine("n klein", new Grid(2,3))._1
+        new_grid_small must be(new Grid(4,5))
+        val new_grid_middle = tui.processInputLine("n mitte", new Grid(2,3))._1
+        new_grid_middle must be(new Grid(9,10))
         val new_grid_huge = tui.processInputLine("n huge", new Grid(2,3))._1
         new_grid_huge must be(new Grid(16,17))
       }
