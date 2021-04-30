@@ -22,7 +22,7 @@ class Controller(var grid: Grid) extends Observable {
       return -1
     }
     for (i <- grid.cells.row - 1 to 0 by -1) {
-      if (grid.col(column).cell(i).equals(Cell(0))) {
+      if (grid.col(column).cells(i).equals(Cell(0))) {
         grid = grid.set(i, column, value)
         notifyObservers()
         return i
@@ -31,14 +31,14 @@ class Controller(var grid: Grid) extends Observable {
     -1
   }
 
-  def check4Vier(grid: Grid, row: Int, col: Int): Boolean = {
-    if (viererCheck(grid.col(col).getCells)) {
+  def checkWinner(row: Int, col: Int): Boolean = {
+    if (check4number(grid.col(col).getCells)) {
       true
-    } else if (viererCheck(grid.row(row).getCells)) {
+    } else if (check4number(grid.row(row).getCells)) {
       true
-    } else if (viererCheck(grid.left_dia(row, col).getCells)) {
+    } else if (check4number(grid.left_dia(row, col).getCells)) {
       true
-    } else if (viererCheck(grid.right_dia(row, col).getCells)) {
+    } else if (check4number(grid.right_dia(row, col).getCells)) {
       true
     } else {
       false
