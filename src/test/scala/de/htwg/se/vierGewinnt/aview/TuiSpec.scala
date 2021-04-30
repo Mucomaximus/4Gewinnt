@@ -31,12 +31,12 @@ class TuiSpec extends AnyWordSpec with Matchers {
       val tui = new Tui
       "insert at the location in the grid" in {
         val a_grid = new Grid(6,7).set(5, 1, 1)
-        val new_grid = tui.checkBottom(new Grid(6,7), 1, 1)
+        val new_grid = tui.bodenCheck(new Grid(6,7), 1, 1)
         new_grid._1 must be(a_grid)
         new_grid._2 must be(5)
       }
       "insertion failed because the column is full" in {
-        val new_grid = tui.checkBottom(Grid(new Matrix[Cell](Vector(Vector(Cell(0),Cell(2)),Vector(Cell(0),Cell(1))))), 1, 1)
+        val new_grid = tui.bodenCheck(Grid(new Matrix[Cell](Vector(Vector(Cell(0),Cell(2)),Vector(Cell(0),Cell(1))))), 1, 1)
         new_grid._2 must be(-1)
       }
     }

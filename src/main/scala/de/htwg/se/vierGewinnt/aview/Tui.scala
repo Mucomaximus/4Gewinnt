@@ -10,10 +10,10 @@ class Tui {
       case "q" => (grid, (0, 0))
       case "n klein" =>
         playerList = Array(true, false)
-        (new Grid(6, 7), (0,0))
+        (new Grid(4, 5), (0,0))
       case "n mitte" =>
         playerList = Array(true, false)
-        (new Grid(10,11),(0,0))
+        (new Grid(9,10),(0,0))
       case _ =>
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
@@ -27,7 +27,7 @@ class Tui {
               println("Falsche Eingabe, wdh!")
               return (grid, (-1, -1))
             }
-            val checkGrid = checkBottom(grid, column.asDigit, value)
+            val checkGrid = bodenCheck(grid, column.asDigit, value)
             if (checkGrid._2 == -1) {
               println("Spalte voll, wdh!")
               return (grid, (-1, -1))
@@ -41,7 +41,7 @@ class Tui {
   }
 
 
-  def checkBottom(grid: Grid, column: Int, value: Int): (Grid, Int) = {
+  def bodenCheck(grid: Grid, column: Int, value: Int): (Grid, Int) = {
     for (i <- grid.cells.row - 1 to 0 by -1) {
       if (grid.col(column).getCell(i).equals(Cell(0))) {
         return (grid.set(i, column, value), i)
