@@ -4,7 +4,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
-class PlayerSpec extends AnyWordSpec with Matchers {
+class PlayerTest extends AnyWordSpec with Matchers {
   "A Player" when {
     "new" must {
       val player = Player("Your Name")

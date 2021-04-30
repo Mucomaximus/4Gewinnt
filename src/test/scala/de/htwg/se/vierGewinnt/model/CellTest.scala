@@ -4,7 +4,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
-class CellSpec extends AnyWordSpec with Matchers {
+class CellTest extends AnyWordSpec with Matchers {
 
   "a Cell" when {
     "not set to any value" should {

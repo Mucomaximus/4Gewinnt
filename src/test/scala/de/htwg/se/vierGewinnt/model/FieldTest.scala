@@ -3,7 +3,7 @@ package de.htwg.se.vierGewinnt.model
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class FieldSpec extends AnyWordSpec with Matchers {
+class FieldTest extends AnyWordSpec with Matchers {
   "a field is a row or a column or a diagonal of a grid" when {
     val field = Field(Vector(Cell(1), Cell(2),Cell(3),Cell(5)))
     "cell function is to test" in {

@@ -3,7 +3,7 @@ package de.htwg.se.vierGewinnt.model
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class GridSpec extends AnyWordSpec with Matchers {
+class GridTest extends AnyWordSpec with Matchers {
   "A Grid is the playingfield of Connect Four. A Grid" when {
     val smallGrid = Grid(new Matrix[Cell](Vector(Vector(Cell(1), Cell(2), Cell(3)), Vector(Cell(4), Cell(5), Cell(6)), Vector(Cell(7), Cell(8), Cell(9)))))
     val grid = new Grid(2,3)

@@ -5,7 +5,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
-class MatrixSpec extends AnyWordSpec with Matchers {
+class MatrixTest extends AnyWordSpec with Matchers {
   "A Matrix is a tailor-made immutable data type that contains a two-dimentional Vector of Cells. A Matrix" when {
     "empty" should {
       "be created by 4x5 matrix filled with empty cells" in {
