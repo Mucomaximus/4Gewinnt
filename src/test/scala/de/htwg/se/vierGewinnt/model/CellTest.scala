@@ -7,7 +7,7 @@ import org.scalatest.wordspec.AnyWordSpec
 class CellTest extends AnyWordSpec with Matchers {
 
   "a Cell" when {
-    "not set to any value" should {
+    "not set to any value" must {
       val emtpyCell = Cell(0)
       "habe value 0" in {
         emtpyCell.value must be(0)
@@ -16,13 +16,20 @@ class CellTest extends AnyWordSpec with Matchers {
         emtpyCell.isSet must be(false)
       }
     }
-    "set to a specific value" should {
+    "set to a specific value" must {
       val nonEmptyCell = Cell(1)
       "return that value" in {
         nonEmptyCell.value must be(1)
       }
       "be set" in {
         nonEmptyCell.isSet must be(true)
+      }
+    }
+
+    "converted to a String" must {
+      val nonEmptyCell1 = Cell(1)
+      "return" in {
+        nonEmptyCell1.toString must be("1")
       }
     }
   }

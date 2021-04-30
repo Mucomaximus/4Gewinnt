@@ -22,6 +22,10 @@ class TuiTest extends AnyWordSpec with Matchers {
       "any non-configured input will do nothing" in {
         tui.processInputLine("test")
       }
+
+      "when updating" in {
+        tui.update() must be (println())
+      }
     }
   }
 }
