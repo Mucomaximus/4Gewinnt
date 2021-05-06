@@ -12,6 +12,7 @@ class Controller(var grid: Grid) extends Observable {
   }
 
 
+
   def check4Win(row: Int, col: Int): Boolean = {
     if (check4Num(grid.col(col).getCells)) {
       true

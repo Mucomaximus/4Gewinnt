@@ -8,8 +8,8 @@ import scala.io.StdIn.readLine
 import de.htwg.se.vierGewinnt.controller._
 
 object vierGewinnt {
-  val controller = new Controller(new Grid(6,7))
-  var grid = new Grid(6,7)
+  val controller = new Controller(new Grid(6, 7))
+  var grid = new Grid(6, 7)
   val tui = new Tui(controller)
 
   def main(args: Array[String]): Unit = {
@@ -20,6 +20,7 @@ object vierGewinnt {
     println("Player 2 please give ur name:")
     val player2 = Player(readLine())
     println(s"$player1 and $player2, Welcome to Connect Four")
+
 
     println(controller.gridToString)
     do {
