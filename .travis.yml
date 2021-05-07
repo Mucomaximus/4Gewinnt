@@ -1,9 +1,9 @@
 language: scala
 scala:
-  - 2.13.5
+- 2.12.7
 
 script:
-  - sbt clean test coverageReport
+- sbt clean coverage test coverageReport
 
 after_success:
-  - sbt coverageReport coveralls
+- sbt coverageReport coveralls
