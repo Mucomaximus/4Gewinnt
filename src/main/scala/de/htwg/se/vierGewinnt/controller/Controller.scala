@@ -1,13 +1,17 @@
 package de.htwg.se.vierGewinnt.controller
+
 import de.htwg.se.vierGewinnt.util._
 import de.htwg.se.vierGewinnt.model._
+import de.htwg.se.vierGewinnt.controller._
 
-class Controller(var grid: Grid) extends Observable {
+class Controller(var grid: GridInterface) extends Observable {
 
   var playerList = Array(true, false)
+  var gameStatus: State = State(StateIdle(Status.IDLE))
+  private val UndoManager = new UndoManager
 
-  def createEmptyGrid(row: Int, col: Int): Unit = {
-    grid = new Grid(row, col)
+  def createEmptyGrid(s:String): Unit = {
+    grid = GridFactory.getGrid(s)
     notifyObservers()
   }
 
@@ -75,4 +79,15 @@ class Controller(var grid: Grid) extends Observable {
   }
 
   def gridToString: String = grid.toString
+
+
+  def undo: Unit = {
+    UndoManager.undoStep
+    notifyObservers()
+  }
+
+  def redo: Unit ={
+    UndoManager.redoStep
+    notifyObservers()
+  }
 }

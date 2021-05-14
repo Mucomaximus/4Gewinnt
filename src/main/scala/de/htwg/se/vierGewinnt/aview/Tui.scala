@@ -2,15 +2,53 @@ package de.htwg.se.vierGewinnt.aview
 
 import de.htwg.se.vierGewinnt.util.Observer
 import de.htwg.se.vierGewinnt.controller._
+import scala.io.StdIn
+
 
 class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
   var winnerCheck = false
+  var player1 = ""
+  var player2 = ""
+  var input = ""
+
+
+  def processInputLineStart(): Unit = {
+
+    println("Player 1 please give ur name:")
+    player1 = StdIn.readLine()
+    println("Player 2 please give ur name:")
+    player2 = StdIn.readLine()
+    println(s"$player1 and $player2, Welcome to vier Gewinnt")
+
+    processInputLineLoop()
+  }
+
+  def processInputLineLoop(): Unit = {
+    do {
+      if (controller.getTurn(0)) {
+        println(s"$player1, its your turn!")
+      } else if (controller.getTurn(1)) {
+        println(s"$player2, its your turn!")
+      }
+      input = StdIn.readLine()
+      processInputLine(input)
+    } while (input != "q" && !winnerCheck)
+  }
 
   def processInputLine(input: String): Unit = {
     input match {
       case "q" => println("Spiel beendet!")
+      case "s" =>
+        controller.playerList = Array(true, false)
+        controller.createEmptyGrid("Small")
+      case "m" =>
+        controller.playerList = Array(true, false)
+        controller.createEmptyGrid("Middle")
+      case "h" =>
+        controller.playerList = Array(true, false)
+        controller.createEmptyGrid("Huge")
       case _ =>
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
@@ -31,5 +69,11 @@ class Tui(controller: Controller) extends Observer {
     }
   }
 
-  override def update(): Unit = println(controller.gridToString)
+
+  override def update(): Unit = {
+    println(controller.gridToString)
+    println(Status.getMessage(controller.gameStatus.mystate.gameStatus))
+    if (controller.gameStatus.mystate.gameStatus.equals(Status.WON))
+      winnerCheck = true
+  }
 }
