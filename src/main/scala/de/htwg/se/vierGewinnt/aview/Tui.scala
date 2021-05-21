@@ -52,9 +52,14 @@ class Tui(controller: Controller) extends Observer {
       case _ =>
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
-            val row_number = controller.setBottomVal(column.asDigit)
+            val col = toInt(column)
+            if (col == None){
+              println(column + " is Not a value")
+              return
+            }
+            val row_number = controller.setBottomVal(col.get)
             if (row_number == -1) {
-              println("Column full!")
+              println("Wrong Input")
               return
             }
             if (controller.check4Win(row_number, column.asDigit)) {
@@ -69,6 +74,14 @@ class Tui(controller: Controller) extends Observer {
     }
   }
 
+  def toInt(input: Char): Option[Int] = {
+    try {
+      Some(Integer.parseInt(input.toString.trim))
+    } catch {
+      case e: Exception => None
+    }
+  }
+
 
   override def update(): Unit = {
     println(controller.gridToString)
@@ -77,3 +90,4 @@ class Tui(controller: Controller) extends Observer {
       winnerCheck = true
   }
 }
+
