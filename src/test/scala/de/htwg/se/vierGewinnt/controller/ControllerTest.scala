@@ -8,7 +8,7 @@ import de.htwg.se.vierGewinnt.model.Grid
 class ControllerTest extends AnyWordSpec with Matchers {
 
   "a controller" when {
-    "observed by an Observer" should {
+    "observed by an Observer" must {
       val aGrid = new Grid(2, 3)
       val controller = new Controller(aGrid)
       val observer = new Observer() {
@@ -30,17 +30,17 @@ class ControllerTest extends AnyWordSpec with Matchers {
         controller.grid.cell(4, 0).value must be(1)
         controller.setBottomVal(1)
         observer.updated must be(true)
-        controller.grid.cell(4, 1).value must be(2)
+        controller.grid.cell(4, 1).value must be(1)
         controller.setBottomVal(2)
         observer.updated must be(true)
         controller.grid.cell(4, 2).value must be(1)
         controller.setBottomVal(3)
         observer.updated must be(true)
-        controller.grid.cell(4, 3).value must be(2)
+        controller.grid.cell(4, 3).value must be(1)
       }
       "test the checkWinner function" in {
         controller.check4Win(0, 0) must be(false)
-        controller.check4Win(4, 0) must be(false)
+        controller.check4Win(4, 0) must be(true)
       }
       "test the getTrun function" in {
         controller.getTurn(0) must be(true)
