@@ -27,20 +27,20 @@ class ControllerTest extends AnyWordSpec with Matchers {
       "notify its Observer after setting a cell" in {
         controller.setBottomVal(0)
         observer.updated must be(true)
-        controller.grid.cell(5, 0).value must be(1)
+        controller.grid.cell(4, 0).value must be(1)
         controller.setBottomVal(1)
         observer.updated must be(true)
-        controller.grid.cell(5, 1).value must be(2)
+        controller.grid.cell(4, 1).value must be(2)
         controller.setBottomVal(2)
         observer.updated must be(true)
-        controller.grid.cell(5, 2).value must be(1)
+        controller.grid.cell(4, 2).value must be(1)
         controller.setBottomVal(3)
         observer.updated must be(true)
-        controller.grid.cell(5, 3).value must be(2)
+        controller.grid.cell(4, 3).value must be(2)
       }
       "test the checkWinner function" in {
         controller.check4Win(0, 0) must be(false)
-        controller.check4Win(5, 0) must be(false)
+        controller.check4Win(4, 0) must be(false)
       }
       "test the getTrun function" in {
         controller.getTurn(0) must be(true)
