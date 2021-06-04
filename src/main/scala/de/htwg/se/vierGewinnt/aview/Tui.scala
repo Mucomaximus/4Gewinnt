@@ -39,7 +39,7 @@ class Tui(controller: ControllerInterface) extends Reactor {
       } else if (controller.getTurn(1)) {
         println(s"$player2, its your turn!")
       }
-      input = StdIn.readLine() // stuck at this readline at the end of a gui-game
+      input = StdIn.readLine()
       processInputLine(input)
     } while (input != "q")
   }
@@ -49,13 +49,13 @@ class Tui(controller: ControllerInterface) extends Reactor {
       case "q" => println("The game exit")
       case "n small" =>
         controller.resetPlayerList()
-        controller.createEmptyGrid("Grid Small")
+        controller.createEmptyGrid("Small")
       case "n middle" =>
         controller.resetPlayerList()
-        controller.createEmptyGrid("Grid Middle")
+        controller.createEmptyGrid("Middle")
       case "n huge" =>
         controller.resetPlayerList()
-        controller.createEmptyGrid("Grid Huge")
+        controller.createEmptyGrid("Huge")
       case "undo" => controller.undo
       case "redo" => controller.redo
       case _ =>
@@ -65,7 +65,7 @@ class Tui(controller: ControllerInterface) extends Reactor {
         }
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
-            controller.setValueToBottom(column.asDigit)
+            controller.setBottomVal(column.asDigit)
           case _ =>
             println("wrong input, repeat your turn!")
         }
@@ -80,7 +80,7 @@ class Tui(controller: ControllerInterface) extends Reactor {
 
   def printTui(): Unit = {
     println(controller.gridToString)
-    println(GameStatus.message(controller.getGameStatus()))
+    println(GameStatus.message(controller.getGameStatus))
   }
 
   def printWinner():Unit = {

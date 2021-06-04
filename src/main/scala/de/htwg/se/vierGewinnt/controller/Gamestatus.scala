@@ -1,4 +1,4 @@
-package de.htwg.se.connect_four.controller.controllerComponent
+package de.htwg.se.vierGewinnt.controller
 
 object GameStatus extends Enumeration {
   type GameStatus = Value

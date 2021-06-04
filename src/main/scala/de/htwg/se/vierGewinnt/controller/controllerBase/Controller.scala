@@ -1,42 +1,40 @@
-package de.htwg.se.connect_four.controller.controllerComponent.controllerBaseImpl
+package de.htwg.se.vierGewinnt.controller.controllerBase
 
 
-import de.htwg.se.connect_four.controller.controllerComponent.GameStatus.GameStatus
-import de.htwg.se.connect_four.controller.controllerComponent.GameStatus
-import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GridSizeChanged, WinEvent}
-import de.htwg.se.vierGewinnt.controller.controllerBase.{Gamestate, SetCommand, StatelikeIDLE}
+import de.htwg.se.vierGewinnt.controller.GameStatus.GameStatus
+import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GameStatus, GridSizeChanged, WinEvent, IdleEvent}
 import de.htwg.se.vierGewinnt.model.{Cell, GridInterface}
 import de.htwg.se.vierGewinnt.util.UndoManager
 
 class Controller (var grid: GridInterface) extends ControllerInterface {
 
   var playerList = Array(true, false)
-  var gameStatus: Gamestate = Gamestate(StatelikeIDLE(GameStatus.IDLE))
+  var gameStatus: Gamestate = Gamestate(StateIdle(GameStatus.IDLE))
   private val undoManager = new UndoManager
-  var gridrow = 6
-  var gridcol = 7
+  var gridrow = 5
+  var gridcol = 6
 
-  def createEmptyGrid(s:String): Unit = {
+  def createEmptyGrid(s: String): Unit = {
     s match {
-      case "Grid Small" =>{
-        gridrow = 6
-        gridcol = 7
+      case "Small" =>{
+        gridrow = 5
+        gridcol = 6
       }
-      case "Grid Middle" => {
-        gridrow = 10
-        gridcol = 11
+      case "Middle" => {
+        gridrow = 9
+        gridcol = 10
       }
-      case "Grid Huge" => {
-        gridrow = 16
-        gridcol = 17
+      case "Huge" => {
+        gridrow = 15
+        gridcol = 16
       }
     }
     resetPlayerList()
-    gameStatus = Gamestate(StatelikeIDLE(GameStatus.IDLE))
+    gameStatus = Gamestate(StateIdle(GameStatus.IDLE))
     publish(new GridSizeChanged(s))
   }
 
-  def setValueToBottom(column: Int): Unit = {
+  def setBottomVal(column: Int): Unit = {
     val value = if (playerList(0)) {
       1
     } else {
@@ -45,7 +43,7 @@ class Controller (var grid: GridInterface) extends ControllerInterface {
     for (i <- grid.cells.row - 1 to 0 by -1) {
       if (grid.col(column).cells(i).equals(Cell(0))) {
         undoManager.doStep(new SetCommand(i,column, value, this))
-        if (this.checkWinner(i, column)) {
+        if (this.check4Win(i, column)) {
           gameStatus.changeState()
           publish(new WinEvent)
           return
@@ -58,7 +56,7 @@ class Controller (var grid: GridInterface) extends ControllerInterface {
     }
   }
 
-  def checkWinner(row: Int, col: Int): Boolean = {
+  def check4Win(row: Int, col: Int): Boolean = {
     if (check4number(grid.col(col).getCells)) {
       true
     } else if (check4number(grid.row(row).getCells)) {

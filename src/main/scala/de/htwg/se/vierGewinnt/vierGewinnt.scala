@@ -1,6 +1,6 @@
 package de.htwg.se.vierGewinnt
 
-import de.htwg.se.connect_four.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.vierGewinnt.controller.controllerBase._
 import de.htwg.se.vierGewinnt.aview.Tui
 import de.htwg.se.vierGewinnt.model.Grid
 import de.htwg.se.vierGewinnt.aview.gui._

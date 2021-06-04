@@ -1,10 +1,7 @@
 package de.htwg.se.vierGewinnt.aview
 
-import de.htwg.se.connect_four.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.vierGewinnt.model._
+import de.htwg.se.vierGewinnt.controller.controllerBase._
 import org.scalatest.matchers.must.Matchers
-import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.vierGewinnt.controller._
 import de.htwg.se.vierGewinnt.model.Grid
 import org.scalatest.wordspec.AnyWordSpec
 

@@ -1,9 +1,8 @@
 package de.htwg.se.vierGewinnt.controller
 
-import de.htwg.se.connect_four.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.vierGewinnt.controller.controllerBase._
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.vierGewinnt.util._
 import de.htwg.se.vierGewinnt.model.Grid
 
 class ControllerTest extends AnyWordSpec with Matchers {
@@ -14,8 +13,8 @@ class ControllerTest extends AnyWordSpec with Matchers {
       val controller = new Controller(aGrid)
 
       "test the checkWinner function" in {
-        controller.checkWinner(0,0) must be(false)
-        controller.checkWinner(1,0) must be(false)
+        controller.check4Win(0,0) must be(false)
+        controller.check4Win(1,0) must be(false)
       }
       "test the getTrun function" in {
         controller.getTurn(0) must be(true)
