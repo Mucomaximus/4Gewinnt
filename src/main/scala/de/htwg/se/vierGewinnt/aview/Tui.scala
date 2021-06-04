@@ -25,6 +25,7 @@ class Tui(controller: Controller) extends Observer {
     processInputLineLoop()
   }
 
+
   def processInputLineLoop(): Unit = {
     do {
       if (controller.getTurn(0)) {
@@ -36,6 +37,7 @@ class Tui(controller: Controller) extends Observer {
       processInputLine(input)
     } while (input != "q" && !winnerCheck)
   }
+
 
   def processInputLine(input: String): Unit = {
     input match {
