@@ -1,8 +1,9 @@
-package de.htwg.se.vierGewinnt.controller
+package de.htwg.se.vierGewinnt.controller.controllerBase
 
+import de.htwg.se.vierGewinnt.controller.ControllerInterface
 import de.htwg.se.vierGewinnt.util.Command
 
-class SetCommand(row: Int, col:Int, value:Int, controller: Controller) extends Command {
+class SetCommand(row: Int, col:Int, value:Int, controller: ControllerInterface) extends Command {
   override def doStep: Unit = {
     controller.grid = controller.grid.set(row,col,value)
   }

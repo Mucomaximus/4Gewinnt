@@ -1,95 +1,95 @@
 package de.htwg.se.vierGewinnt.aview
 
-import de.htwg.se.vierGewinnt.util.Observer
-import de.htwg.se.vierGewinnt.controller._
+import de.htwg.se.connect_four.controller.controllerComponent.{GameStatus}
+import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GridSizeChanged, WinEvent}
+
+import scala.swing.Reactor
 import scala.io.StdIn
 
+class Tui(controller: ControllerInterface) extends Reactor {
 
-class Tui(controller: Controller) extends Observer {
-
-  controller.add(this)
+  listenTo(controller)
   var winnerCheck = false
-  var player1 = ""
-  var player2 = ""
+  var player1 = "Player1"
+  var player2 = "Player2"
   var input = ""
 
-
   def processInputLineStart(): Unit = {
-
-    println("Player 1 please give ur name:")
+    println("Player 1 please type in your name:")
     player1 = StdIn.readLine()
-    println("Player 2 please give ur name:")
+    println("Player 2 please type in your name:")
     player2 = StdIn.readLine()
-    println(s"$player1 and $player2, Welcome to vier Gewinnt")
+    println(s"$player1 and $player2, Welcome to Connect Four")
+    println(controller.gridToString)
 
     processInputLineLoop()
   }
 
-
   def processInputLineLoop(): Unit = {
     do {
+      if (winnerCheck) {
+        println("Start a new game please!")
+        input = StdIn.readLine()
+        processInputLine(input)
+        winnerCheck = false
+      }
+
       if (controller.getTurn(0)) {
         println(s"$player1, its your turn!")
       } else if (controller.getTurn(1)) {
         println(s"$player2, its your turn!")
       }
-      input = StdIn.readLine()
+      input = StdIn.readLine() // stuck at this readline at the end of a gui-game
       processInputLine(input)
-    } while (input != "q" && !winnerCheck)
+    } while (input != "q")
   }
-
 
   def processInputLine(input: String): Unit = {
     input match {
-      case "q" => println("Spiel beendet!")
-      case "s" =>
-        controller.playerList = Array(true, false)
-        controller.createEmptyGrid("Small")
-      case "m" =>
-        controller.playerList = Array(true, false)
-        controller.createEmptyGrid("Middle")
-      case "h" =>
-        controller.playerList = Array(true, false)
-        controller.createEmptyGrid("Huge")
+      case "q" => println("The game exit")
+      case "n small" =>
+        controller.resetPlayerList()
+        controller.createEmptyGrid("Grid Small")
+      case "n middle" =>
+        controller.resetPlayerList()
+        controller.createEmptyGrid("Grid Middle")
+      case "n huge" =>
+        controller.resetPlayerList()
+        controller.createEmptyGrid("Grid Huge")
+      case "undo" => controller.undo
+      case "redo" => controller.redo
       case _ =>
+        if (winnerCheck) {
+          println("please start a new game")
+          return
+        }
         input.toList.filter(c => c != ' ') match {
           case 'i' :: column :: Nil =>
-            val col = toInt(column)
-            if (col == None){
-              println(column + " is Not a value")
-              return
-            }
-            val row_number = controller.setBottomVal(col.get)
-            if (row_number == -1) {
-              println("Wrong Input")
-              return
-            }
-            if (controller.check4Win(row_number, column.asDigit)) {
-              printf("The player %s won!\n", controller.currentPlayer().toString)
-              winnerCheck = true
-            } else {
-              controller.changeTurn()
-            }
+            controller.setValueToBottom(column.asDigit)
           case _ =>
-            println("Wrong input, repeat!")
+            println("wrong input, repeat your turn!")
         }
     }
   }
 
-  def toInt(input: Char): Option[Int] = {
-    try {
-      Some(Integer.parseInt(input.toString.trim))
-    } catch {
-      case e: Exception => None
-    }
+  reactions += {
+    case event: CellChanged => printTui()
+    case event: GridSizeChanged => printTui()
+    case event: WinEvent => printWinner
   }
 
-
-  override def update(): Unit = {
+  def printTui(): Unit = {
     println(controller.gridToString)
-    println(Status.getMessage(controller.gameStatus.mystate.gameStatus))
-    if (controller.gameStatus.mystate.gameStatus.equals(Status.WON))
-      winnerCheck = true
+    println(GameStatus.message(controller.getGameStatus()))
+  }
+
+  def printWinner():Unit = {
+    println(controller.gridToString)
+    if (controller.currentPlayer() == 1) {
+      printf("%s is the winner!\n",player1)
+    } else {
+      printf("%s is the winner!\n", player2)
+    }
+    winnerCheck = true
   }
 }
-
