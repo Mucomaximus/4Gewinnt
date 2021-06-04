@@ -1,7 +1,6 @@
 package de.htwg.se.vierGewinnt.aview.gui
 
 import scala.swing._
-import javax.swing.table._
 
 import scala.swing.event._
 import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, WinEvent}
