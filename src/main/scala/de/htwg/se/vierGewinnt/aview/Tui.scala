@@ -1,6 +1,5 @@
 package de.htwg.se.vierGewinnt.aview
 
-import de.htwg.se.vierGewinnt.controller.GameStatus
 import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GridSizeChanged, WinEvent}
 
 import scala.swing.Reactor
@@ -80,7 +79,6 @@ class Tui(controller: ControllerInterface) extends Reactor {
 
   def printTui(): Unit = {
     println(controller.gridToString)
-    println(GameStatus.message(controller.getGameStatus))
   }
 
   def printWinner():Unit = {

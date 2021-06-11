@@ -6,5 +6,5 @@ case class Field(cells: Vector[Cell]) {
 
   def getCells: Vector[Cell] = cells
 
-  def reverseD: Vector[Cell] = cells
+  def reverseD: Vector[Cell] = cells.reverse
 }

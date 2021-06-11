@@ -8,18 +8,15 @@ import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, WinE
 
 class CellPanel(row: Int, column: Int, controller: ControllerInterface) extends FlowPanel {
 
-  var winnerCheck = false;
-
-  def redraw = {
-    repaint
-  }
+  var winnerCheck = false
 
   contents += new BoxPanel(Orientation.Vertical) {
     preferredSize = new Dimension(80, 80)
     background = new Color(255, 255, 255)
-    border = Swing.BeveledBorder(Swing.Raised)
+    border = Swing.BeveledBorder(Swing.Lowered)
     listenTo(mouse.clicks)
     listenTo(controller)
+
     reactions += {
       case MouseClicked(src, pt, mod, clicks, pops) => {
         if (!winnerCheck) {
@@ -35,7 +32,7 @@ class CellPanel(row: Int, column: Int, controller: ControllerInterface) extends 
           } else if (controller.grid.cell(row, column).value == 1) {
             new Color(255, 0, 0)
           } else {
-            new Color(0, 0, 255)
+            new Color(255, 255, 0)
           }
         }
         repaint
@@ -48,7 +45,7 @@ class CellPanel(row: Int, column: Int, controller: ControllerInterface) extends 
           } else if (controller.grid.cell(row, column).value == 1) {
             new Color(255, 0, 0)
           } else {
-            new Color(0, 0, 255)
+            new Color(255, 255, 0)
           }
         }
         winnerCheck = true

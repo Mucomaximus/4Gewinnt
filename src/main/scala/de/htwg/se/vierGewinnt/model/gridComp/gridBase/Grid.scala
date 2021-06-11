@@ -33,7 +33,6 @@ case class Grid(cells: Matrix[Cell]) extends GridInterface {
     Field(mvec.toVector)
   }
 
-
   def right_dia(row: Int, col: Int): Field = {
     var mrow = row
     var mcol = col

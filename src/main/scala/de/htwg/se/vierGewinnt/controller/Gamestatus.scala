@@ -10,9 +10,7 @@ object GameStatus extends Enumeration {
   )
 
   def message(gameStatus: GameStatus) = {
-    val map = Map[GameStatus, String](
-      IDLE -> "",
-      WIN -> "Game Over",
-    )
+      IDLE -> ""
+      WIN -> "Game Over"
   }
 }

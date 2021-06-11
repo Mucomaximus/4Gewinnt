@@ -10,7 +10,7 @@ class CellClicked(val row: Int, val column: Int) extends Event
 class SwingGui(controller: ControllerInterface) extends Frame {
   listenTo(controller)
   var cells = Array.ofDim[CellPanel](controller.getGridRow, controller.getGridCol)
-  title = "Connect Four"
+  title = "Vier Gewinnt"
 
   def gridPanel = new GridPanel(controller.getGridRow, controller.getGridCol) {
     for {
@@ -33,50 +33,32 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   menuBar = new MenuBar {
     contents += new Menu("File") {
-      mnemonic = Key.F
-      contents += new MenuItem(Action("New") { controller.createEmptyGrid("Small") })
+      contents += new MenuItem(Action("New") {
+        controller.resetPlayerList()
+        controller.createEmptyGrid("Small")
+        })
       contents += new MenuItem(Action("Quit") { System.exit(0) })
     }
     contents += new Menu("Edit") {
-      mnemonic = Key.E
       contents += new MenuItem(Action("Undo") { controller.undo })
       contents += new MenuItem(Action("Redo") { controller.redo })
-    }
-    contents += new Menu("Options") {
-      mnemonic = Key.O
-      contents += new MenuItem(Action("Size 5*6") { controller.createEmptyGrid("Small") })
-      contents += new MenuItem(Action("Size 9*10") { controller.createEmptyGrid("Middle") })
-      contents += new MenuItem(Action("Size 15*16") { controller.createEmptyGrid("Huge") })
     }
   }
 
   visible =true
-  redraw
+  reDraw
 
   reactions += {
-    case event: GridSizeChanged => {
-      val row = controller.getGridRow
-      val col = controller.getGridCol
-      resize(row,col)
-    }
-    case event: CellChanged     => redraw
+    case event: CellChanged     => reDraw
     case event: WinEvent        => printWinner
   }
 
-  def resize(gridrow: Int, gridcol:Int) = {
-    cells = Array.ofDim[CellPanel](controller.getGridRow, controller.getGridCol)
-    statusline.text = "Player " + controller.currentPlayer().toString + " it's your Turn!"
-    contents = new BorderPanel {
-      add(gridPanel, BorderPanel.Position.Center)
-      add(statusline, BorderPanel.Position.North)
-    }
-  }
 
-  def redraw = {
+  def reDraw = {
     for {
       row <- 0 until controller.getGridRow
       column <- 0 until controller.getGridCol
-    } cells(row)(column).redraw
+    } cells(row)(column).repaint
     statusline.text = "Player " + controller.currentPlayer().toString + " it's your Turn!"
     repaint
   }
@@ -84,6 +66,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   def printWinner = {
     statusline.text = "Player " + controller.currentPlayer().toString + " won!"
-    repaint
+    reDraw
   }
 }

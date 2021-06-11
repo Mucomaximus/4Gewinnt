@@ -14,9 +14,8 @@ class FieldTest extends AnyWordSpec with Matchers {
     "getCells function is to test" in {
       field.getCells must be(Vector(Cell(1), Cell(2),Cell(3),Cell(5)))
     }
-
     "reverseD function is to test" in {
-      field.reverseD must be(Vector(Cell(1), Cell(2),Cell(3),Cell(5)))
+      field.reverseD must be(Vector(Cell(5), Cell(3),Cell(2),Cell(1)))
     }
   }
 }

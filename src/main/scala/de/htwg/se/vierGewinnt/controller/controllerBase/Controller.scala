@@ -2,7 +2,7 @@ package de.htwg.se.vierGewinnt.controller.controllerBase
 
 
 import de.htwg.se.vierGewinnt.controller.GameStatus._
-import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GameStatus, GridSizeChanged, IdleEvent, WinEvent}
+import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GameStatus, GridSizeChanged, WinEvent}
 import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 import de.htwg.se.vierGewinnt.model.gridComp.gridBase.Cell
 import de.htwg.se.vierGewinnt.util.UndoManager
