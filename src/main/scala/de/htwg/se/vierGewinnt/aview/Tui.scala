@@ -1,6 +1,6 @@
 package de.htwg.se.vierGewinnt.aview
 
-import de.htwg.se.connect_four.controller.controllerComponent.{GameStatus}
+import de.htwg.se.vierGewinnt.controller.GameStatus
 import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GridSizeChanged, WinEvent}
 
 import scala.swing.Reactor

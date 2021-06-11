@@ -1,8 +1,8 @@
 package de.htwg.se.vierGewinnt.controller.controllerBase
 
-case class Gamestate(var mystate:StateLike) {
+case class Gamestate(var myState:StateLike) {
 
   def changeState(): Unit = {
-    mystate.handle(this)
+    myState.handle(this)
   }
 }

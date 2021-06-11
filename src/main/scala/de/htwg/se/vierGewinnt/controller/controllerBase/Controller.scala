@@ -1,7 +1,7 @@
 package de.htwg.se.vierGewinnt.controller.controllerBase
 
 
-import de.htwg.se.vierGewinnt.controller.GameStatus.GameStatus
+import de.htwg.se.vierGewinnt.controller.GameStatus._
 import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, GameStatus, GridSizeChanged, WinEvent, IdleEvent}
 import de.htwg.se.vierGewinnt.model.{Cell, GridInterface}
 import de.htwg.se.vierGewinnt.util.UndoManager
@@ -117,7 +117,7 @@ class Controller (var grid: GridInterface) extends ControllerInterface {
     publish(new CellChanged)
   }
 
-  override def getGameStatus(): GameStatus = gameStatus.mystate.gameStatus
+  override def getGameStatus(): GameStatus = gameStatus.myState.gameStatus
 
   override def getGridRow: Int = gridrow
 

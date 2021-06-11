@@ -4,6 +4,8 @@ import de.htwg.se.vierGewinnt.controller.GameStatus.GameStatus
 
 
 trait StateLike {
+
   var gameStatus:GameStatus
-  def handle(gamestate: Gamestate): Unit
+
+  def handle(gameState: Gamestate): Unit
 }

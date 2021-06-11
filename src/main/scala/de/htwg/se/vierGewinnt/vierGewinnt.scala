@@ -6,7 +6,7 @@ import de.htwg.se.vierGewinnt.model.Grid
 import de.htwg.se.vierGewinnt.aview.gui._
 
 object vierGewinnt {
-  val controller = new Controller(new Grid(6,7))
+  val controller = new Controller(new Grid(5,6))
   val tui = new Tui(controller)
   val gui = new SwingGui(controller)
 
