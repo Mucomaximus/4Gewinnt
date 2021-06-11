@@ -1,6 +1,6 @@
-package de.htwg.se.vierGewinnt.model.gridBase
+package de.htwg.se.vierGewinnt.model.gridComp.gridBase
 
-import de.htwg.se.vierGewinnt.model.GridInterface
+import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 
 object GridFactory {
   def getGrid(s: String): GridInterface = {

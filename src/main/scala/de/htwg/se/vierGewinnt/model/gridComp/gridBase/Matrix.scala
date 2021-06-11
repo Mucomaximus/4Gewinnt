@@ -1,4 +1,4 @@
-package de.htwg.se.vierGewinnt.model.gridBase
+package de.htwg.se.vierGewinnt.model.gridComp.gridBase
 
 case class Matrix[T](rows: Vector[Vector[T]]) {
 

@@ -1,7 +1,7 @@
 package de.htwg.se.vierGewinnt.aview
 
 import de.htwg.se.vierGewinnt.controller.controllerBase._
-import de.htwg.se.vierGewinnt.model.gridBase.Grid
+import de.htwg.se.vierGewinnt.model.gridComp.gridBase.Grid
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

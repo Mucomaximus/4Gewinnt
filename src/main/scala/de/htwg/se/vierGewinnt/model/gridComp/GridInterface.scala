@@ -1,6 +1,6 @@
-package de.htwg.se.vierGewinnt.model
+package de.htwg.se.vierGewinnt.model.gridComp
 
-import de.htwg.se.vierGewinnt.model.gridBase.{Cell, Field, Grid, Matrix}
+import de.htwg.se.vierGewinnt.model.gridComp.gridBase.{Cell, Field, Grid, Matrix}
 
 trait GridInterface {
   val cells: Matrix[Cell]

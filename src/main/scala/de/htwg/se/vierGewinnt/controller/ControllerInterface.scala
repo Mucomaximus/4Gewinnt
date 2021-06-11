@@ -1,7 +1,7 @@
 package de.htwg.se.vierGewinnt.controller
 
 import de.htwg.se.vierGewinnt.controller.GameStatus.GameStatus
-import de.htwg.se.vierGewinnt.model.GridInterface
+import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 
 import scala.swing.event.Event
 import scala.swing.Publisher
