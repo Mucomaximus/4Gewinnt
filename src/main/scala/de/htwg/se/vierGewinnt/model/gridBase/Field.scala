@@ -1,4 +1,4 @@
-package de.htwg.se.vierGewinnt.model
+package de.htwg.se.vierGewinnt.model.gridBase
 
 case class Field(cells: Vector[Cell]) {
 

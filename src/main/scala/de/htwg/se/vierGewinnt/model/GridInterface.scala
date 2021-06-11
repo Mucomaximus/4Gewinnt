@@ -1,10 +1,11 @@
 package de.htwg.se.vierGewinnt.model
 
+import de.htwg.se.vierGewinnt.model.gridBase.{Cell, Field, Grid, Matrix}
 
 trait GridInterface {
   val cells: Matrix[Cell]
 
-  def size:Int
+  def size: Int
 
   def cell(row: Int, col: Int): Cell
 

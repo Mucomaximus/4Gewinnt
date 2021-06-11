@@ -1,4 +1,6 @@
-package de.htwg.se.vierGewinnt.model
+package de.htwg.se.vierGewinnt.model.gridBase
+
+import de.htwg.se.vierGewinnt.model.GridInterface
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -8,8 +10,11 @@ case class Grid(cells: Matrix[Cell]) extends GridInterface {
   val size: Int = cells.size
 
   def cell(row: Int, col: Int): Cell = cells.cell(row, col)
+
   def set(row: Int, col: Int, value: Int): Grid = copy(cells.replaceCell(row, col, Cell(value)))
+
   def row(row: Int): Field = Field(cells.rows(row))
+
   def col(col: Int): Field = Field(cells.rows.map(row => row(col)))
 
   def left_dia(row: Int, col: Int): Field = {

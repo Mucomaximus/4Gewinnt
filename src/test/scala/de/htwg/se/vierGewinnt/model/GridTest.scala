@@ -1,5 +1,6 @@
 package de.htwg.se.vierGewinnt.model
 
+import de.htwg.se.vierGewinnt.model.gridBase.{Cell, Grid, Matrix}
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -7,7 +8,7 @@ class GridTest extends AnyWordSpec with Matchers {
   "A Grid is the playingfield of Connect Four. A Grid" when {
     val smallGrid = Grid(new Matrix[Cell](Vector(Vector(Cell(1), Cell(2), Cell(3)), Vector(Cell(4), Cell(5), Cell(6)), Vector(Cell(7), Cell(8), Cell(9)))))
     val grid = new Grid(2,3)
-    val tinyGrid = Grid(new Matrix[Cell](Vector(Vector(Cell(1)))))
+    val tinyGrid = gridBase.Grid(new Matrix[Cell](Vector(Vector(Cell(1)))))
     val aGrid = new Grid(4, 5)
     "toString function tested" in {
       val a_string = "0 0 0 " + System.lineSeparator() + "0 0 0 " + System.lineSeparator()

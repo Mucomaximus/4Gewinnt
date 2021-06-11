@@ -2,8 +2,8 @@ package de.htwg.se.vierGewinnt
 
 import de.htwg.se.vierGewinnt.controller.controllerBase._
 import de.htwg.se.vierGewinnt.aview.Tui
-import de.htwg.se.vierGewinnt.model.Grid
 import de.htwg.se.vierGewinnt.aview.gui._
+import de.htwg.se.vierGewinnt.model.gridBase.Grid
 
 object vierGewinnt {
   val controller = new Controller(new Grid(5,6))

@@ -1,8 +1,8 @@
 package de.htwg.se.vierGewinnt.aview
 
 import de.htwg.se.vierGewinnt.controller.controllerBase._
+import de.htwg.se.vierGewinnt.model.gridBase.Grid
 import org.scalatest.matchers.must.Matchers
-import de.htwg.se.vierGewinnt.model.Grid
 import org.scalatest.wordspec.AnyWordSpec
 
 class TuiSpec extends AnyWordSpec with Matchers {

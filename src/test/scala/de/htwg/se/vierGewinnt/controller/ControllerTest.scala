@@ -1,9 +1,9 @@
 package de.htwg.se.vierGewinnt.controller
 
 import de.htwg.se.vierGewinnt.controller.controllerBase._
+import de.htwg.se.vierGewinnt.model.gridBase.Grid
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.vierGewinnt.model.Grid
 
 class ControllerTest extends AnyWordSpec with Matchers {
 
