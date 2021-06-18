@@ -17,7 +17,7 @@ class Controller (var grid: GridInterface) extends ControllerInterface {
 
   def createEmptyGrid(s: String): Unit = {
     s match {
-      case "Small" =>{
+      case "Small" => {
         gridrow = 5
         gridcol = 6
       }

@@ -53,7 +53,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     case event: WinEvent        => printWinner
   }
 
-
   def reDraw = {
     for {
       row <- 0 until controller.getGridRow
@@ -62,7 +61,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     statusline.text = "Player " + controller.currentPlayer().toString + " it's your Turn!"
     repaint
   }
-
 
   def printWinner = {
     statusline.text = "Player " + controller.currentPlayer().toString + " won!"
