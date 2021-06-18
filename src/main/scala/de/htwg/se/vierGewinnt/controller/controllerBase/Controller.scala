@@ -6,29 +6,30 @@ import de.htwg.se.vierGewinnt.controller.{CellChanged, ControllerInterface, Game
 import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 import de.htwg.se.vierGewinnt.model.gridComp.gridBase.Cell
 import de.htwg.se.vierGewinnt.util.UndoManager
+import de.htwg.se.vierGewinnt.vierGewinntModule
 
-class Controller (var grid: GridInterface) extends ControllerInterface {
+import com.google.inject.name.Names
+import com.google.inject.{Guice, Inject}
+import net.codingwell.scalaguice.InjectorExtensions._
+
+class Controller @Inject() (var grid: GridInterface) extends ControllerInterface {
 
   var playerList = Array(true, false)
   var gameStatus: Gamestate = Gamestate(StateIdle(GameStatus.IDLE))
   private val undoManager = new UndoManager
+  val injector = Guice.createInjector(new vierGewinntModule)
+
   var gridrow = 5
   var gridcol = 6
 
   def createEmptyGrid(s: String): Unit = {
     s match {
-      case "Small" => {
-        gridrow = 5
-        gridcol = 6
-      }
-      case "Middle" => {
-        gridrow = 9
-        gridcol = 10
-      }
-      case "Huge" => {
-        gridrow = 15
-        gridcol = 16
-      }
+      case "Small" => {grid = injector.instance[GridInterface](Names.named("Grid Small"))
+                      gridrow = 5; gridcol = 6}
+      case "Middle" => {grid = injector.instance[GridInterface](Names.named("Grid Middle"))
+                      gridrow = 8; gridcol = 9}
+      case "Huge" => {grid = injector.instance[GridInterface](Names.named("Grid Large"))
+                      gridrow = 14; gridcol = 15}
     }
     resetPlayerList()
     gameStatus = Gamestate(StateIdle(GameStatus.IDLE))

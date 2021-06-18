@@ -1,7 +1,5 @@
-package de.htwg.se.vierGewinnt.model
+package de.htwg.se.vierGewinnt.model.gridComp.gridBase
 
-
-import de.htwg.se.vierGewinnt.model.gridComp.gridBase.{Cell, Matrix}
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

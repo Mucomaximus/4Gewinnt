@@ -1,6 +1,5 @@
-package de.htwg.se.vierGewinnt.controller
+package de.htwg.se.vierGewinnt.controller.controllerBase
 
-import de.htwg.se.vierGewinnt.controller.controllerBase._
 import de.htwg.se.vierGewinnt.model.gridComp.gridBase.Grid
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
