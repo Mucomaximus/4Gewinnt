@@ -55,6 +55,8 @@ class Tui(controller: ControllerInterface) extends Reactor {
       case "n huge" =>
         controller.resetPlayerList()
         controller.createEmptyGrid("Huge")
+      case "save" => controller.save
+      case "load" => controller.load
       case "undo" => controller.undo
       case "redo" => controller.redo
       case _ =>

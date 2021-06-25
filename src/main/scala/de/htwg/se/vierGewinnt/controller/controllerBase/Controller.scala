@@ -7,6 +7,7 @@ import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 import de.htwg.se.vierGewinnt.model.gridComp.gridBase.Cell
 import de.htwg.se.vierGewinnt.util.UndoManager
 import de.htwg.se.vierGewinnt.vierGewinntModule
+import de.htwg.se.vierGewinnt.model.fileIOComp.FileIOInterface
 
 import com.google.inject.name.Names
 import com.google.inject.{Guice, Inject}
@@ -17,7 +18,9 @@ class Controller @Inject() (var grid: GridInterface) extends ControllerInterface
   var playerList = Array(true, false)
   var gameStatus: Gamestate = Gamestate(StateIdle(GameStatus.IDLE))
   private val undoManager = new UndoManager
+
   val injector = Guice.createInjector(new vierGewinntModule)
+  val fileIO = injector.instance[FileIOInterface]
 
   var gridrow = 5
   var gridcol = 6
@@ -124,4 +127,16 @@ class Controller @Inject() (var grid: GridInterface) extends ControllerInterface
   override def getGridRow: Int = gridrow
 
   override def getGridCol: Int = gridcol
+
+  def save():Unit = {
+    fileIO.save(grid, playerList)
+    publish(new CellChanged)
+  }
+
+  def load():Unit =  {
+    val data = fileIO.load
+    grid = data._1
+    playerList = data._2
+    publish(new CellChanged)
+  }
 }

@@ -8,6 +8,8 @@ case class Grid(cells: Matrix[Cell]) extends GridInterface {
   def this(row: Int, col: Int) = this(new Matrix[Cell](row, col, Cell(0)))
 
   val size: Int = cells.size
+  val cols: Int = cells.col
+  val rows: Int = cells.row
 
   def cell(row: Int, col: Int): Cell = cells.cell(row, col)
 
@@ -50,4 +52,11 @@ case class Grid(cells: Matrix[Cell]) extends GridInterface {
   }
 
   override def toString: String = cells.toString
+}
+
+
+object Grid {
+  import play.api.libs.json._
+  implicit val gridWrites: OWrites[Grid] = Json.writes[Grid]
+  implicit val gridReads: Reads[Grid] = Json.reads[Grid]
 }

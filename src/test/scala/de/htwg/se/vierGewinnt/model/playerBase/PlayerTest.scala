@@ -1,5 +1,6 @@
 package de.htwg.se.vierGewinnt.model.playerBase
 
+import de.htwg.se.vierGewinnt.model.playerComp.playerBase.Player
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

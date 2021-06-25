@@ -21,6 +21,8 @@ trait ControllerInterface extends Publisher {
   def getGridRow:Int
   def getGridCol:Int
   var grid: GridInterface
+  def save:Unit
+  def load:Unit
 }
 
 class CellChanged extends Event

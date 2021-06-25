@@ -10,3 +10,9 @@ case class Cell(value: Int) {
 
   override def toString: String = value.toString
 }
+
+object Cell {
+  import play.api.libs.json._
+  implicit val cellWrites: OWrites[Cell] = Json.writes[Cell]
+  implicit val cellReads: Reads[Cell] = Json.reads[Cell]
+}

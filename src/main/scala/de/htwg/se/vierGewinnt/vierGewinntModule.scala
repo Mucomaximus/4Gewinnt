@@ -4,9 +4,11 @@ import com.google.inject.AbstractModule
 import com.google.inject.name.Names
 import de.htwg.se.vierGewinnt.controller.ControllerInterface
 import de.htwg.se.vierGewinnt.controller.controllerBase
+import de.htwg.se.vierGewinnt.model.fileIOComp.FileIOInterface
 import net.codingwell.scalaguice.ScalaModule
 import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 import de.htwg.se.vierGewinnt.model.gridComp.gridAdv.Grid
+import de.htwg.se.vierGewinnt.model.fileIOComp.fileIoXmlImpl.FileIO
 
 class vierGewinntModule extends AbstractModule with ScalaModule {
 
@@ -21,5 +23,8 @@ class vierGewinntModule extends AbstractModule with ScalaModule {
     bind[GridInterface].annotatedWithName("Grid Small").toInstance(new Grid(5, 6))
     bind[GridInterface].annotatedWithName("Grid Middle").toInstance(new Grid(8, 9))
     bind[GridInterface].annotatedWithName("Grid Huge").toInstance(new Grid(14, 15))
+
+
+    bind[FileIOInterface].to[FileIO]
   }
 }
