@@ -18,7 +18,6 @@ class MatrixTest extends AnyWordSpec with Matchers {
         testMatrix.size must  be(1)
       }
     }
-
     "filled" should {
       val matrix = Matrix(Vector(Vector(Cell(0),Cell(1)), Vector(Cell(0), Cell(2))))
       "give a access to its cells" in {
