@@ -27,7 +27,7 @@ class FileIO extends FileIOInterface {
       case 30 => grid = injector.instance[GridInterface](Names.named("Grid Small"))
       case 72 => grid = injector.instance[GridInterface](Names.named("Grid Middle"))
       case 210 => grid = injector.instance[GridInterface](Names.named("Grid Huge"))
-      case _ => println("jjj")
+      case _ => println("Error Size")
     }
 
     for (index <- 0 until rows * cols) {
@@ -42,12 +42,12 @@ class FileIO extends FileIOInterface {
   }
 
   override def save(grid: GridInterface, playerlist: Array[Boolean]): Unit = {
-    val pw = new PrintWriter(new File("/home/woot/IdeaProjects/vierGewinnt/grid.json"))
-    pw.write(Json.prettyPrint(toJson(grid, playerlist)))
-    pw.close()
+    val printer = new PrintWriter(new File("grid.json"))
+    printer.write(Json.prettyPrint(toJson(grid, playerlist)))
+    printer.close()
   }
 
-  implicit val cellWrites = new Writes[CellInterface] {
+  implicit val cellWrites: Writes[CellInterface] = new Writes[CellInterface] {
     override def writes(value: CellInterface): JsValue = {
       Json.obj(
         "value" -> value.value

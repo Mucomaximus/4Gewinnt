@@ -7,24 +7,26 @@ import net.codingwell.scalaguice.InjectorExtensions._
 import de.htwg.se.vierGewinnt.vierGewinntModule
 import de.htwg.se.vierGewinnt.model.fileIOComp.FileIOInterface
 import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
+
 import java.io._
-import scala.xml.PrettyPrinter
+import scala.xml.{Elem, PrettyPrinter}
 
 
 class FileIO extends FileIOInterface {
   override def load: (GridInterface, Array[Boolean]) = {
     var grid: GridInterface = null
     val file = scala.xml.XML.loadFile("grid.xml")
-    val sizeAttr = (file \\ "grid" \ "@size")
+    val sizeAtt = (file \\ "grid" \ "@size")
     val player1 = (file \\ "grid" \ "@player1").text.toBoolean
     val player2 = (file \\ "grid" \ "@player2").text.toBoolean
-    val size = sizeAttr.text.toInt
+    val size = sizeAtt.text.toInt
     val injector = Guice.createInjector(new vierGewinntModule)
+
     size match {
       case 30 => grid = injector.instance[GridInterface](Names.named("Grid Small"))
       case 72 => grid = injector.instance[GridInterface](Names.named("Grid Middle"))
       case 210 => grid = injector.instance[GridInterface](Names.named("Grid Huge"))
-      case _ => println("jjj")
+      case _ => println("Error Size")
     }
     val cellNodes = (file \\ "cell")
     for (cell <- cellNodes) {
@@ -38,15 +40,15 @@ class FileIO extends FileIOInterface {
 
   override def save(grid: GridInterface, players: Array[Boolean]): Unit = {saveString(grid, players)}
 
-  def saveString(interface: GridInterface, players: Array[Boolean]) = {
-    val pw = new PrintWriter(new File("/home/woot/IdeaProjects/vierGewinnt/grid.xml"))
+  def saveString(interface: GridInterface, players: Array[Boolean]): Unit = {
+    val printer = new PrintWriter(new File("grid.xml"))
     val prettyPrinter = new PrettyPrinter(120,4)
     val xml = prettyPrinter.format(toXml(interface, players))
-    pw.write(xml)
-    pw.close()
+    printer.write(xml)
+    printer.close()
   }
 
-  def toXml(interface: GridInterface, players: Array[Boolean])= {
+  def toXml(interface: GridInterface, players: Array[Boolean]): Elem = {
     <grid  size={(interface.rows * interface.cols).toString} player1={players.apply(0).toString} player2={players.apply(1).toString}>
       {
       for {
@@ -58,7 +60,7 @@ class FileIO extends FileIOInterface {
     </grid>
   }
 
-  def cellToXml(grid: GridInterface, row: Int, col: Int) = {
+  def cellToXml(grid: GridInterface, row: Int, col: Int): Elem = {
     <cell row={ row.toString } col={ col.toString }>
       { grid.cell(row, col).value }
     </cell>

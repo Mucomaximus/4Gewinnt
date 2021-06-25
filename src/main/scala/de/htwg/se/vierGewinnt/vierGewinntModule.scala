@@ -2,10 +2,10 @@ package de.htwg.se.vierGewinnt
 
 import com.google.inject.AbstractModule
 import com.google.inject.name.Names
+import net.codingwell.scalaguice.ScalaModule
 import de.htwg.se.vierGewinnt.controller.ControllerInterface
 import de.htwg.se.vierGewinnt.controller.controllerBase
 import de.htwg.se.vierGewinnt.model.fileIOComp.FileIOInterface
-import net.codingwell.scalaguice.ScalaModule
 import de.htwg.se.vierGewinnt.model.gridComp.GridInterface
 import de.htwg.se.vierGewinnt.model.gridComp.gridAdv.Grid
 import de.htwg.se.vierGewinnt.model.fileIOComp.fileIoXmlImpl.FileIO
